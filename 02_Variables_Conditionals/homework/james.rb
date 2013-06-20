@@ -1,42 +1,48 @@
 puts "\nWelcome to Secret Number!\n"
-puts "Created by Jimmy Page for BWD at GA\n\n\n"
-puts "What is Your Name? "
+puts "Created by Jimmy Page for BWD at GA\n\n"
+puts "What is Your Name?\n\n"
 
 # Ask user to define the variable for name
 name = gets
 
 # If they input name say hi!
 def welcome(name)
-   puts "howdy #{name}\n\n"  
+   puts "\nHowdy #{name}" 
 end
 welcome(name)
 
-puts "Ok #{name} you must guess a number between 1 and 10 and you only have 3 tries to do so \n\n"
+puts "\nYou have 3 tries to guess the magic number."
+puts "The magic number is between 0 and 10.\n\n"
 
+puts "Are you ready to play?"
+print "Press the 'enter' key to continue.\n\n"
+gets
 
- puts "The magic number is between 0 and 10.\n\n"
- magic_number = 5
+print "What is your guess? "
 
- print "What is your guess? "
- guess = gets.chomp
+3.downto(1) do |count|
+  num = gets
+  num = num.chomp
+  num = num.to_i
 
- tries = 0
+  if num == 4
+    puts "\nYou guessed it!!!\nThe magic number was #{num}.\n\n\n"
+    print "Press the 'enter' key to continue."
+    gets
+    exit
+  elsif num < 4 then
+    count -= 1
+    puts "Too Low, try again.\n\n" 
+    puts "You have #{count} guesses left"
+  elsif num > 5 then
+    count -= 1
+    puts "Too High, try again.\n\n" 
+    puts "You have #{count} guesses left"
+  end
 
- while guess =~ /\d/
-        case guess.to_i
-         when 0...magic_number
-             puts "Too Low, try again.\n\n"
-         when magic_number
-             puts "\nYou guessed it!!!\nThe magic number was #{magic_number}.\n\n\n"
-             print "Press the 'enter' key to continue."
-             gets
-             exit
-         else
-             puts "Too High, try again.\n\n"
-         end
-     print "What is your guess? "
-     guess = gets.chomp
-     
- end
+end
 
- puts "Invalid entry, you lose."
+puts "\n\nSorry you have used all your guesses and lost the game.\n"
+print "Press the 'enter' key to continue.\n\n"
+gets
+exit
